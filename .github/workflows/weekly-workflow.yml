@@ -9,6 +9,7 @@ jobs:
   copybara-build:
     runs-on: depot-ubuntu-24.04
     steps:
+      - uses: actions/checkout@v2
       - uses: depot/setup-action@v1
       - name: Bake container
         uses: depot/bake-action@v1.10.0
