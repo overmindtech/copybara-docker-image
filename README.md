@@ -1,21 +1,26 @@
-# GitHub Actions Weekly
+# Copybara Docker Image
 
-This project contains a GitHub Actions workflow that is scheduled to run once a week. The primary purpose of this workflow is to automate tasks that need to be executed on a regular basis, such as running tests, deploying applications, or performing maintenance tasks.
+This repository builds and publishes a Docker image for [Google's Copybara](https://github.com/google/copybara) tool on a weekly schedule using GitHub Actions.
+
+## Overview
+
+Copybara is a tool that helps with transforming and moving code between repositories. This project creates a Docker image that includes Copybara, making it easy to use in CI/CD pipelines or other containerized environments.
 
 ## Workflow Configuration
 
-The workflow is defined in the file located at `.github/workflows/weekly-workflow.yml`. This file contains the necessary configuration for the scheduled trigger and the jobs that will be executed.
+The workflow is defined in weekly-workflow.yml and is scheduled to run once a week (at midnight on Sunday). This ensures that the Docker image stays up-to-date with the latest changes from the Copybara repository.
 
-### Modifying the Workflow
+The workflow:
 
-If you need to modify the schedule or the jobs that are executed, you can do so by editing the `weekly-workflow.yml` file. The schedule is defined using cron syntax, allowing you to specify the exact timing for the workflow to run.
+1. Uses [Depot](https://depot.dev/) for faster container builds
+2. Builds multi-platform images (for both `linux/amd64` and `linux/arm64`)
+3. Generates a Software Bill of Materials (SBOM)
+4. Pushes the resulting image to GitHub Container Registry (GHCR)
 
-### Example Use Cases
+## Docker Image
 
-- Running automated tests on a weekly basis to ensure code quality.
-- Deploying updates to a staging environment for review.
-- Performing regular maintenance tasks such as cleaning up resources or generating reports.
+The Docker image is built using the configuration in images-bake.hcl and is available at:
 
-## Getting Started
-
-To get started with this project, simply clone the repository and ensure that the workflow file is correctly configured to meet your needs. You can then push changes to the repository, and the workflow will automatically run according to the defined schedule.
+```
+ghcr.io/overmindtech/copybara-docker-image/copybara:main
+```

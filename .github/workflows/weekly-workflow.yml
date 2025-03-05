@@ -15,6 +15,6 @@ jobs:
         id: bake
         with:
           project: xnsnw3m20t
-          files: build/images-bake.hcl
+          files: images-bake.hcl
           sbom: true
           push: true
