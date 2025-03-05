@@ -1,0 +1,20 @@
+name: Weekly Container Build
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # Runs at midnight on Sunday
+
+jobs:
+  copybara-build:
+    runs-on: depot-ubuntu-24.04
+    steps:
+      - uses: depot/setup-action@v1
+      - name: Bake container
+        uses: depot/bake-action@v1.10.0
+        id: bake
+        with:
+          project: xnsnw3m20t
+          files: build/images-bake.hcl
+          sbom: true
+          push: true
