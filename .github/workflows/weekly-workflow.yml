@@ -7,7 +7,7 @@ on:
 
 jobs:
   copybara-build:
-    runs-on: depot-ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: read # required for checkout
       id-token: write # mint AWS credentials through OIDC
